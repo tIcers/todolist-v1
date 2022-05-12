@@ -1,10 +1,12 @@
 const express = require('express');
 const port = 4000
 const bodyParser = require("body-parser");
+const res = require('express/lib/response');
 
 const app = express()
 
 var items = ["Study ejs","Workout"];
+var workItems= []
 
 app.set('view engine', 'ejs');
 
@@ -61,16 +63,32 @@ app.get('/', (req, res) => {
 	//res.write("<p>Its not a weekend, i have to work on assignment!</p>");
 	//res.write("<h1>No, i have to work! IT's not a weekend</h1>");
 
-	res.render("list", {kindOfDay: day, NewListItems: items});
+	res.render("list", {listTitle: day, NewListItems: items});
 });
 
 
 app.post('/', (req, res) => {
-	var item = req.body.newItem;
+	let item = req.body.newItem;
+	if (req.body.list ==="Work"){
+		workItems.push(item)
+		res.redirect("/work")
+	}else{
+
+	
 	//console.log(new_item);
 	items.push(item);
 	res.redirect("/");
+	}
 	
+})
+app.get("/work",(req,res)=>{
+	res.render("list", {listTitle:"Work list",NewListItems:workItems});
+})
+
+app.post("/work",(req,res)=>{
+	var item = req.body.newItem;
+	workItems.push(item);
+	res.redirect("/");
 })
 app.listen(port, () => {
 	console.log(`Example app listening on port ${port}`)
