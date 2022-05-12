@@ -1,30 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>To Do list</title>
+	<link rel="stylesheet" href="css/style.css">
 </head>
-<body> 
-	<h1><%= kindOfDay%></h1>
 
-	<ul>
-		<% for(var i = 0; i <NewListItems.length;i++){ %>
-			<li><%= NewListItems[i]%></li>
+<body>
+	<div class="box" id="heading">
+		<h1>
+			<%= kindOfDay%>
+		</h1>
 
-		<% } %>
+	</div>
+	<div class="box">
+		<% for(var i=0; i <NewListItems.length;i++){ %>
+			<div class="item">
+				<input type="checkbox">
+				<p><%= NewListItems[i]%></p>
+			</div>
+			<% } %>
 
-	</ul>
+				<form class="item" action="/" method="post">
+					<input type="text" name="newItem" placeholder="New item">
+					<button type="submit" name="button">+</button>
+				</form>
 
-	<form action="/" method="post">
-		<input type="text" name="newItem">
-		<button type="submit" name="button">Add</button>
-	</form>
-	<!-- <% if (kindOfDay === "Saturday " || kindOfDay ==="Sunday " ){ %>
-		<h1 style="color: aqua"> <%= kindOfDay %> ToDoList </h1>
-	<%}else{ %>
-		<h1 style="color: blue"><%= kindOfDay %> ToDoList </h1>
-	<% } %> -->	
+	</div>
+
 </body>
+
 </html>
