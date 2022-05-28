@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
 		day: 'numeric'
 	};
 
-	var day = today.toLocaleDateString("ja-JP", options);
+	var day = today.toLocaleDateString("en-EN", options);
 
 
 
